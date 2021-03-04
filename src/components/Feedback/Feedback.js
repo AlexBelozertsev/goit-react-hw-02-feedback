@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import style from './Feedback.module.css';
 
+import Section from './Section';
+import FeedbackOptions from './FeedbackOptions';
+import Statistics from './Statistics';
+import Notifications from './Notification';
+
 class Feedback extends Component {
   state = {
     good: 0,
@@ -28,28 +33,25 @@ class Feedback extends Component {
 
     return (
       <div className={style.Feedback}>
-        <h2>Plese leave feedback</h2>
-        <div className={style.Feedback__bar}>
-          <button type="button" onClick={this.HandleImcrement}>
-            Good
-          </button>
-          <button type="button" onClick={this.HandleImcrement}>
-            Neutral
-          </button>
-          <button type="button" onClick={this.HandleImcrement}>
-            Bad
-          </button>
-        </div>
-        <div>
-          <h2>Statistic</h2>
-          <ul className={style.statistic}>
-            <li>Good: {good}</li>
-            <li>Neutral: {neutral}</li>
-            <li>Bad: {bad}</li>
-            <li>Total: {countTotalFeedback}</li>
-            <li>Positive Feedback: {countPositiveFeedbackPercentage}%</li>
-          </ul>
-        </div>
+        <Section title="Plese leave feedback">
+          <FeedbackOptions
+            options={this.state}
+            onLeaveFeedback={this.HandleImcrement}
+          />
+        </Section>
+        <Section title="Statistics">
+          {countTotalFeedback ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={countTotalFeedback}
+              positivePercentage={countPositiveFeedbackPercentage}
+            />
+          ) : (
+            <Notifications message="No feedback given" />
+          )}
+        </Section>
       </div>
     );
   }

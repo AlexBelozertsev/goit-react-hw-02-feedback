@@ -4,6 +4,7 @@
   padding: 10px;
   border: 1px solid black;
   text-align: center;
+  font-weight: 500;
 }
 
 .Feedback__bar > button {
@@ -11,9 +12,9 @@
   border-radius: 5px;
   padding: 10px 15px;
   background-color: yellow;
-  font-weight: 500;
   width: calc(100% / 4);
   margin: 5px;
+  font-weight: 500;
   font-family: inherit;
   cursor: pointer;
   outline: none;
@@ -30,5 +31,4 @@
 .statistic {
   list-style: none;
   text-align: left;
-  font-weight: 500;
 }

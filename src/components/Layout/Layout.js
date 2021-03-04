@@ -6,7 +6,6 @@ const Layout = ({ children }) => (
   <>
     <AppBar text="React. HomeWork-2.1. Feedback." />
     <Container>{children}</Container>
-    <AppBar text="" />
   </>
 );
 
