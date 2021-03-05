@@ -24,12 +24,18 @@ class Feedback extends Component {
     });
   };
 
+  countTotalFeedback = () =>
+    this.state.good + this.state.neutral + this.state.bad;
+
+  countPositiveFeedbackPercentage = () =>
+    this.state.good
+      ? Math.round((this.state.good * 100) / this.countTotalFeedback())
+      : 0;
+
   render() {
     const { good, neutral, bad } = this.state;
-    const countTotalFeedback = good + neutral + bad;
-    const countPositiveFeedbackPercentage = good
-      ? Math.round((good * 100) / countTotalFeedback)
-      : 0;
+    const totalFeedback = this.countTotalFeedback();
+    const positivePercentage = this.countPositiveFeedbackPercentage();
 
     return (
       <div className={style.Feedback}>
@@ -40,13 +46,13 @@ class Feedback extends Component {
           />
         </Section>
         <Section title="Statistics">
-          {countTotalFeedback ? (
+          {totalFeedback ? (
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
-              total={countTotalFeedback}
-              positivePercentage={countPositiveFeedbackPercentage}
+              total={totalFeedback}
+              positivePercentage={positivePercentage}
             />
           ) : (
             <Notifications message="No feedback given" />
